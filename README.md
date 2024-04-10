@@ -311,33 +311,65 @@ class MainActivity : AppCompatActivity() {
 Client python 
 ```python
 import socket
+import time
 
-#variables
-host = 'localhost'
-port = 8050
+import keyboard
+from pynput.keyboard import Key,Controller
 
-#creamos una instancia del socket
-socketObj = socket.socket()
+ACELERAR = 'w'
+FRENAR = 's'
+DERECHA = 'd'
+IZQUIERDA = 'a'
+INVERSE = 'r'
 
-#nos conectamos al servidor
-socketObj.connect((host,port))
-#mensage conectado
-print("Conectado al servidor")
-#main loop
+
+# Instanciamos objeto para trabajar con el socket
+socketObj = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+# Puerto y servidor que debe escuchar
+socketObj.bind(("", 8051))
+# Aceptamos conexiones entrantes con el modo listen. por parametro las conexiones simultaneas
+socketObj.listen(1)
+# instanciamos al objeto client(socket client) para recibir datos
+cli, addres = socketObj.accept()
+
+
+# main loop
+def conditionalsCommand(rx):
+    if rx == 'w':
+        keyboard.press(rx)
+    if rx == 'rw':
+        keyboard.release('w')
+    if rx == 'a':
+        keyboard.release('d')
+        keyboard.press('a')
+    if rx == 'd':
+        keyboard.release('a')
+        keyboard.press('d')
+    if rx == 'q':
+        keyboard.release('d')
+        keyboard.release('a')
+    if rx == 'rs':
+        keyboard.release('s')
+    if rx == 's':
+        keyboard.press('s')
+
+
+
 while True:
-    #instanciamos una entrada de datos para que el cliente puede enviar mensajes
-    tx = input("Mensaje cliente a servidor")
-    #enviamos mensaje
-    socketObj.send(tx.encode('ascii'))
-    #esperamo si existe una respuesta
-    tx = socketObj.recv(1024)
-    #imprimir mensaje recibido
-    print(tx)
+    # recibimos el mensaje, como parámetro la cantidad de bytes por recibir
+    rx = cli.recv(1024)
+    if len(rx) > 0:
+        # mensaje recibidow
+        print("Message: Ip" + str(addres) + " Puerto" + str(rx))
+        # def conditionals
+        conditionalsCommand(rx.decode('utf-8'))
+        # enviar mensaje de recibido
+        # cli.send("mensaje recibido".encode('ascii'))
 
-#cerramos la instancia del objeto servidor
+cli.close()
 socketObj.close()
-#conexion cerrada
-print("conexion cerrada")
+print("Conexiones cerradas")
 
 
 ```

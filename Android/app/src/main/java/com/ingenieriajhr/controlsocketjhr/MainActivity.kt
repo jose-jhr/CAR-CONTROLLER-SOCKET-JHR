@@ -128,6 +128,7 @@ class MainActivity : AppCompatActivity() {
         }
         if (quadrant == 4 || quadrant == 3){ returnDegrees = 180+(((y+maxValueFinal)*90f)/9.87f)
         }
+        //return
         return returnDegrees
     }
 

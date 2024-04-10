@@ -9,9 +9,9 @@
 
     <ImageView
         android:id="@+id/btnplaPause"
-        android:layout_width="70sp"
-        android:layout_height="70sp"
-        android:layout_marginTop="5sp"
+        android:layout_width="@dimen/_70sdp"
+        android:layout_height="@dimen/_70sdp"
+        android:layout_marginTop="@dimen/_5sdp"
         android:background="@drawable/baseline_play_circle_filled_24"
         app:layout_constraintEnd_toStartOf="@+id/btnVolante"
         app:layout_constraintStart_toStartOf="parent"
@@ -19,8 +19,8 @@
 
     <ImageView
         android:id="@+id/btnVolante"
-        android:layout_width="300sp"
-        android:layout_height="300sp"
+        android:layout_width="@dimen/_200sdp"
+        android:layout_height="@dimen/_200sdp"
         android:background="@drawable/volante"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -31,31 +31,50 @@
 
     <ImageView
         android:id="@+id/btnBrake"
-        android:layout_width="150sp"
-        android:layout_height="150sp"
+        android:layout_width="@dimen/_120sdp"
+        android:layout_height="@dimen/_120sdp"
         android:background="@drawable/freno"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btnVolante"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.1"
-        ></ImageView>
+        android:layout_marginStart="@dimen/_10sdp"
+        app:layout_constraintVertical_bias="0.1"></ImageView>
+
+    <ImageView
+        android:id="@+id/btnVel"
+        android:layout_width="@dimen/_120sdp"
+        android:layout_height="@dimen/_120sdp"
+        android:background="@drawable/velocidad"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnBrake"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.1"></ImageView>
 
 
     <TextView
         android:id="@+id/txtConsole"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_margin="5sp"
+        android:layout_margin="@dimen/_5sdp"
         android:text="consola"
         android:textAlignment="center"
-        android:textSize="10sp"
+        android:textSize="@dimen/_10sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btnVolante"
         app:layout_constraintTop_toBottomOf="@+id/btnBrake"></TextView>
 
 
+    <Button
+        android:id="@+id/btnIpPort"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/red_nar"
+        android:text="IP"
+        app:layout_constraintEnd_toEndOf="@+id/btnVolante"
+        app:layout_constraintStart_toStartOf="@+id/btnVolante"
+        app:layout_constraintTop_toTopOf="parent"></Button>
 
 
 
